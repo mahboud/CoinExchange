@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F474B711F39583900E6940E /* CoinExchangeNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */; };
+		2FC5EE151F3938B0004E814D /* CoinExchangeDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */; };
+		98479D081F3C48CA00E0DB83 /* CoinExchangeDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */; };
+		98479D091F3C48E200E0DB83 /* CoinExchangeNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */; };
 		98763A541F359D1500D9AC59 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98763A531F359D1500D9AC59 /* main.m */; };
 		98763A571F359D1500D9AC59 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 98763A561F359D1500D9AC59 /* AppDelegate.m */; };
 		98763A5A1F359D1500D9AC59 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98763A591F359D1500D9AC59 /* ViewController.m */; };
@@ -27,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F474B6F1F39583900E6940E /* CoinExchangeNetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoinExchangeNetworkEngine.h; path = CoinExchange/CoinExchangeNetworkEngine.h; sourceTree = SOURCE_ROOT; };
+		2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoinExchangeNetworkEngine.m; path = CoinExchange/CoinExchangeNetworkEngine.m; sourceTree = SOURCE_ROOT; };
+		2FC5EE131F3938B0004E814D /* CoinExchangeDataEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoinExchangeDataEngine.h; sourceTree = "<group>"; };
+		2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoinExchangeDataEngine.m; sourceTree = "<group>"; };
 		98763A4F1F359D1500D9AC59 /* CoinExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98763A531F359D1500D9AC59 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		98763A551F359D1500D9AC59 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +94,10 @@
 				98763A581F359D1500D9AC59 /* ViewController.h */,
 				98763A591F359D1500D9AC59 /* ViewController.m */,
 				98763A5B1F359D1500D9AC59 /* Main.storyboard */,
+				2FC5EE131F3938B0004E814D /* CoinExchangeDataEngine.h */,
+				2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */,
+				2F474B6F1F39583900E6940E /* CoinExchangeNetworkEngine.h */,
+				2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */,
 				98763A5E1F359D1500D9AC59 /* Assets.xcassets */,
 				98763A601F359D1500D9AC59 /* LaunchScreen.storyboard */,
 				98763A631F359D1500D9AC59 /* Info.plist */,
@@ -217,7 +229,9 @@
 			files = (
 				98763A5A1F359D1500D9AC59 /* ViewController.m in Sources */,
 				98763A571F359D1500D9AC59 /* AppDelegate.m in Sources */,
+				2F474B711F39583900E6940E /* CoinExchangeNetworkEngine.m in Sources */,
 				98763A541F359D1500D9AC59 /* main.m in Sources */,
+				2FC5EE151F3938B0004E814D /* CoinExchangeDataEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +239,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98479D091F3C48E200E0DB83 /* CoinExchangeNetworkEngine.m in Sources */,
 				98763A6D1F359D1500D9AC59 /* CoinExchangeTests.m in Sources */,
+				98479D081F3C48CA00E0DB83 /* CoinExchangeDataEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +394,6 @@
 		98763A751F359D1500D9AC59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = FG8NNNY6FP;
 				INFOPLIST_FILE = CoinExchangeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -391,7 +406,6 @@
 		98763A761F359D1500D9AC59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = FG8NNNY6FP;
 				INFOPLIST_FILE = CoinExchangeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -420,6 +434,7 @@
 				98763A731F359D1500D9AC59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98763A741F359D1500D9AC59 /* Build configuration list for PBXNativeTarget "CoinExchangeTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +443,7 @@
 				98763A761F359D1500D9AC59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
