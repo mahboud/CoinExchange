@@ -286,7 +286,7 @@ static NSString *const btcCurrency = @"BTC";
   double numerator = runningTotalPrice;
   double denominator = runningTotalAmounts;
   long result = round(reverse ? (denominator * multiplier) / numerator : (numerator * multiplier) / denominator) ;
-  NSString *resultString = [NSString stringWithFormat:@"%ld.%ld", result / multiplier, result % multiplier];
+  NSString *resultString = [NSString stringWithFormat:@"%ld.%02ld", result / multiplier, result % multiplier];
   return @[resultString,
            @(runningTotalAmounts),
            @(amountLeftToSatisfy == 0)];

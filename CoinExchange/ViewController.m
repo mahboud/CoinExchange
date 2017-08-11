@@ -175,7 +175,7 @@
                                                   completion:^(NSString *message, NSNumber *amount, NSString *price){
                                                     _messagesLabel.text = message;
                                                     _priceResultLabel.text = [NSString stringWithFormat:@"%@ %@", price ?: @"-", _currencyString];
-                                                    _amountResultLabel.text = [NSString stringWithFormat:@"%@", amount ?: @"-"];                                                  }];
+                                                    _amountResultLabel.text = [NSString stringWithFormat:@"%@ %@", amount, _productString];                                                  }];
   }
 }
 

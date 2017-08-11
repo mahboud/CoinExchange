@@ -10,6 +10,7 @@
 		2F474B711F39583900E6940E /* CoinExchangeNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */; };
 		2F77B5C91F3D9EB3003D0FFD /* README in Resources */ = {isa = PBXBuildFile; fileRef = 2F77B5C81F3D9EB3003D0FFD /* README */; };
 		2FC5EE151F3938B0004E814D /* CoinExchangeDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */; };
+		2FEFA8C51F3E2E28005EE208 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FEFA8C31F3E2E28005EE208 /* Main2.storyboard */; };
 		98479D081F3C48CA00E0DB83 /* CoinExchangeDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */; };
 		98479D091F3C48E200E0DB83 /* CoinExchangeNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */; };
 		98763A541F359D1500D9AC59 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98763A531F359D1500D9AC59 /* main.m */; };
@@ -37,6 +38,7 @@
 		2F77B5C81F3D9EB3003D0FFD /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		2FC5EE131F3938B0004E814D /* CoinExchangeDataEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoinExchangeDataEngine.h; sourceTree = "<group>"; };
 		2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoinExchangeDataEngine.m; sourceTree = "<group>"; };
+		2FEFA8C41F3E2E28005EE208 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main2.storyboard; sourceTree = "<group>"; };
 		98763A4F1F359D1500D9AC59 /* CoinExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98763A531F359D1500D9AC59 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		98763A551F359D1500D9AC59 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				98763A581F359D1500D9AC59 /* ViewController.h */,
 				98763A591F359D1500D9AC59 /* ViewController.m */,
 				98763A5B1F359D1500D9AC59 /* Main.storyboard */,
+				2FEFA8C31F3E2E28005EE208 /* Main2.storyboard */,
 				2FC5EE131F3938B0004E814D /* CoinExchangeDataEngine.h */,
 				2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */,
 				2F474B6F1F39583900E6940E /* CoinExchangeNetworkEngine.h */,
@@ -212,6 +215,7 @@
 				2F77B5C91F3D9EB3003D0FFD /* README in Resources */,
 				98763A621F359D1500D9AC59 /* LaunchScreen.storyboard in Resources */,
 				98763A5F1F359D1500D9AC59 /* Assets.xcassets in Resources */,
+				2FEFA8C51F3E2E28005EE208 /* Main2.storyboard in Resources */,
 				98763A5D1F359D1500D9AC59 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +263,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2FEFA8C31F3E2E28005EE208 /* Main2.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FEFA8C41F3E2E28005EE208 /* Base */,
+			);
+			name = Main2.storyboard;
+			sourceTree = "<group>";
+		};
 		98763A5B1F359D1500D9AC59 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
