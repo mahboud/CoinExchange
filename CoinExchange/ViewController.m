@@ -39,7 +39,7 @@
 
   [[CoinExchangeDataEngine sharedInstance] startEngine];
   [self getLatest];
-  [NSTimer scheduledTimerWithTimeInterval:10.0 target:self
+  [NSTimer scheduledTimerWithTimeInterval:15 target:self
                                  selector:@selector(getLatest) userInfo:nil repeats:YES];
   
   _productPicker.dataSource = self;

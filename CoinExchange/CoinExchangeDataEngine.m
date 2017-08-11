@@ -68,7 +68,6 @@ static NSString *const btcCurrency = @"BTC";
   }
   else {
     return @[
-             @"-",
              btcProduct,
              ethProduct,
              ltcProduct,
@@ -194,6 +193,13 @@ static NSString *const btcCurrency = @"BTC";
     return;
   }
 
+  int multiplier;
+  if ([currency isEqualToString:@"BTC"]) {
+    multiplier = 100000;
+  }
+  else {
+    multiplier = 100;
+  }
   NSString *productID = [NSString stringWithFormat:@"%@-%@", product, currency];
   BOOL reverseOrder = NO;
 
@@ -202,7 +208,11 @@ static NSString *const btcCurrency = @"BTC";
     reverseOrder = YES;
   }
   NSDictionary <NSString *, NSArray *>*orderBook = _orderBooks[productID];
-
+  if (orderBook[@"message"]) {
+    completion(((NSDictionary<NSString *, NSString *>*)orderBook)[@"message"], nil, nil);
+    return;
+  }
+  
   NSArray *subBook;
   if (([action isEqualToString: buyAction] && !reverseOrder) ||
       ([action isEqualToString: sellAction] && reverseOrder)) {
@@ -219,18 +229,22 @@ static NSString *const btcCurrency = @"BTC";
     else if ([action isEqualToString: buyAction]) {
       completion(@"Order Book unavailable or zero supply is available.", nil, nil);
     }
+    return;
   }
-  NSArray <NSNumber *>*results = [self getPriceWithOrderBook:subBook amount:amount.doubleValue];
+  NSArray <NSNumber *>*results = [self getPriceWithOrderBook:subBook
+                                                      amount:amount.doubleValue
+                                                  multiplier:multiplier
+                                                      reverse:reverseOrder];
   if (results.count == 3) {
     if (!results[2].boolValue) {
       completion(@"Unable to fulfill entire amount.",
                  results[1],
-                 reverseOrder ? @(1 / results[0].doubleValue) : results[0]);
+                 results[0]);
     }
     else {
       completion(@"Completed succesfully.",
                   results[1],
-                  reverseOrder ? @(1 / results[0].doubleValue) : results[0]);
+                  results[0]);
     }
   }
   else {
@@ -238,7 +252,10 @@ static NSString *const btcCurrency = @"BTC";
   }
 }
 
-- (NSArray <NSNumber *>*)getPriceWithOrderBook:(NSArray *)bookArray amount:(double)amount {
+- (NSArray <NSNumber *>*)getPriceWithOrderBook:(NSArray *)bookArray
+                                        amount:(double)amount
+                                    multiplier:(int)multiplier
+                                       reverse:(BOOL)reverse {
   double amountLeftToSatisfy = amount;
   double runningTotalPrice = 0;
   double runningTotalAmounts = 0;
@@ -261,13 +278,16 @@ static NSString *const btcCurrency = @"BTC";
       runningTotalPrice += amountConsumed * price;
       runningTotalAmounts += amountConsumed;
 
-//      NSLog(@"runningTotal: %f totalAmounts: %f - order array: %@", runningTotalPrice, runningTotalAmounts, order);
       if (amountLeftToSatisfy == 0) {
         break;
       }
     }
   }
-  return @[@(runningTotalPrice / runningTotalAmounts),
+  double numerator = runningTotalPrice;
+  double denominator = runningTotalAmounts;
+  long result = round(reverse ? (denominator * multiplier) / numerator : (numerator * multiplier) / denominator) ;
+  NSString *resultString = [NSString stringWithFormat:@"%ld.%ld", result / multiplier, result % multiplier];
+  return @[resultString,
            @(runningTotalAmounts),
            @(amountLeftToSatisfy == 0)];
 }
