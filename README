@@ -1,0 +1,22 @@
+CoinExchange - CoinBase Applicant Programming Exercise
+
+Notes:
+
+1.
+
+I believe that there was a pair of contradictory statements in the email describing this exercise:
+
+"The GDAX API exposes an endpoint to retrieve the current order book for each currency pair. For this task, you should use the level 2 query parameter to fetch aggregated order information."
+
+
+"The application should be a client-side application that does not depend on a server. All API requests, form processing, and result display should be done client side in the mobile app."
+
+It wasn't quite clear to me whether I was to access GDAX over the network, or whether to "not depend on a server" and do everything client-side.
+
+The latter meant that I would have to use a dummy orderbook table, which, I decided, would  take me longer to create by hand, and vary, than just go ahead and get from GDAX over the network.
+
+
+2.
+
+I have the app access the orderbooks once every 15 seconds.  During testing, I noticed that GDAX would sometimes return a "Rate limit exceeded".  I presume that this is not an issue with my code, and could be due to the 15 second queries.
+
