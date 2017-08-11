@@ -11,7 +11,9 @@
 
 @interface CoinExchangeDataEngine (test)
 
+// Exposed for testing.
 - (void)processProductsArray:(NSArray <NSDictionary *>*)array;
+- (void)processBook:(NSDictionary *)book forProduct:(NSString *)productID;
 - (void)clearState;
 
 @end
@@ -48,7 +50,7 @@
                                                  product:nil
                                                 currency:nil
                                                   amount:nil
-                                              completion:^(NSString *message, NSNumber *amount, NSNumber *price) {
+                                              completion:^(NSString *message, NSNumber *amount, NSString *price) {
                                                 XCTAssert(message, @"no result");
 
                                               }];
@@ -57,7 +59,7 @@
                                                    product:@"BTC"
                                                   currency:@"USD"
                                                   amount:nil
-                                              completion:^(NSString *message, NSNumber *amount, NSNumber *price) {
+                                              completion:^(NSString *message, NSNumber *amount, NSString *price) {
                                                 XCTAssert(message, @"no result");
                                                 
                                               }];
@@ -161,7 +163,105 @@
 }
 // if time permits, repeat somethign like above, with a fake orderbook.  Make it have simplistic values so it is easy to get some testing of pricing, as amount increases.
 
+- (void)testFakeOrderBook {
+  // Create an expectation object.
+  // This test only has one, but it's possible to wait on multiple expectations.
+  XCTestExpectation *processBookExpectation = [self expectationWithDescription:@"process"];
+  NSArray <NSDictionary *>*productArray = @[
+                                            @{
+                                              @"base_currency" : @"DOGCOIN",
+                                              @"base_max_size" : @(1000000),
+                                              @"base_min_size" : @(0.01),
+                                              @"display_name" : @"DOGCOIN/BIRDCOIN",
+                                              @"id" : @"DOGCOIN-BIRDCOIN",
+                                              @"margin_enabled" : @(0),
+                                              @"quote_currency" : @"BIRDCOIN",
+                                              @"quote_increment" : @(0.00001),
+                                              },
+                                            ];
+  [[CoinExchangeDataEngine sharedInstance] clearState];
 
+  [[CoinExchangeDataEngine sharedInstance] processProductsArray:productArray];
+
+  NSDictionary <NSString *,NSArray *>*orderBook = @{
+                                                    @"asks" :  @[
+                                                        @[
+                                                          @"40",
+                                                          @"0.5",
+                                                          @"1",
+                                                          ],
+                                                        @[
+                                                          @"60",
+                                                          @"1.5",
+                                                          @"1",
+                                                          ],
+                                                        ],
+                                                    @"bids" :   @[
+                                                        @[
+                                                          @"40",
+                                                          @"0.01",
+                                                          @"1",
+                                                          ],
+                                                        @[
+                                                          @"20",
+                                                          @"2",
+                                                          @"1",
+                                                          ],
+                                                        ],
+                                                    @"sequence" : @"5"
+                                                    };
+
+  [[CoinExchangeDataEngine sharedInstance] processBook:orderBook forProduct:@"DOGCOIN-BIRDCOIN"];
+  // the last method finishes its task by dispatch_async to main_queue, so we need the
+  // following to wait until it is done, which is after the run_loop runs.
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [processBookExpectation fulfill];
+  });
+
+  [self waitForExpectationsWithTimeout:2 handler:^(NSError *error) {
+
+    [[CoinExchangeDataEngine sharedInstance] priceWithAction:@"Buy"
+                                                     product:@"DOGCOIN"
+                                                    currency:@"BIRDCOIN"
+                                                      amount:@(0.5)
+                                                  completion:^(NSString *message, NSNumber *amount, NSString *price){
+                                                    XCTAssertTrue([price isEqualToString:@"40.0"], @"Price should have been 40");
+                                                    XCTAssertEqual(amount.doubleValue, 0.5, @"Amount should have been 0.5");
+                                                  }];
+    [[CoinExchangeDataEngine sharedInstance] priceWithAction:@"Buy"
+                                                     product:@"DOGCOIN"
+                                                    currency:@"BIRDCOIN"
+                                                      amount:@(1.0)
+                                                  completion:^(NSString *message, NSNumber *amount, NSString *price){
+                                                    XCTAssertTrue([price isEqualToString:@"50.0"], @"Price should have been 50");
+                                                    XCTAssertEqual(amount.doubleValue, 1.0, @"Amount should have been 1.0");
+                                                  }];
+    [[CoinExchangeDataEngine sharedInstance] priceWithAction:@"Buy"
+                                                     product:@"DOGCOIN"
+                                                    currency:@"BIRDCOIN"
+                                                      amount:@(3.0)
+                                                  completion:^(NSString *message, NSNumber *amount, NSString *price){
+                                                    XCTAssertTrue([price isEqualToString:@"55.0"], @"Price should have been 55");
+                                                    XCTAssertEqual(amount.doubleValue, 2.0, @"Amount should have been 2.0");
+                                                  }];
+    [[CoinExchangeDataEngine sharedInstance] priceWithAction:@"Sell"
+                                                     product:@"DOGCOIN"
+                                                    currency:@"BIRDCOIN"
+                                                      amount:@(2.0)
+                                                  completion:^(NSString *message, NSNumber *amount, NSString *price){
+                                                    XCTAssertTrue([price isEqualToString:@"20.10"], @"Price should have been 20.10");
+                                                    XCTAssertEqual(amount.doubleValue, 2.0, @"Amount should have been 2.0");
+                                                  }];
+    [[CoinExchangeDataEngine sharedInstance] priceWithAction:@"Sell"
+                                                     product:@"DOGCOIN"
+                                                    currency:@"BIRDCOIN"
+                                                      amount:@(3.0)
+                                                  completion:^(NSString *message, NSNumber *amount, NSString *price){
+                                                    XCTAssertTrue([price isEqualToString:@"20.10"], @"Price should have been 20.10");
+                                                    XCTAssertEqualWithAccuracy(amount.doubleValue, 2.01, 0.001, @"Amount should have been close to 2.01");
+                                                  }];
+  }];
+}
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.

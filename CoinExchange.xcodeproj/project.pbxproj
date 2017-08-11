@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F474B711F39583900E6940E /* CoinExchangeNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */; };
+		2F77B5C91F3D9EB3003D0FFD /* README in Resources */ = {isa = PBXBuildFile; fileRef = 2F77B5C81F3D9EB3003D0FFD /* README */; };
 		2FC5EE151F3938B0004E814D /* CoinExchangeDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */; };
 		98479D081F3C48CA00E0DB83 /* CoinExchangeDataEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */; };
 		98479D091F3C48E200E0DB83 /* CoinExchangeNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		2F474B6F1F39583900E6940E /* CoinExchangeNetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoinExchangeNetworkEngine.h; path = CoinExchange/CoinExchangeNetworkEngine.h; sourceTree = SOURCE_ROOT; };
 		2F474B701F39583900E6940E /* CoinExchangeNetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoinExchangeNetworkEngine.m; path = CoinExchange/CoinExchangeNetworkEngine.m; sourceTree = SOURCE_ROOT; };
+		2F77B5C81F3D9EB3003D0FFD /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		2FC5EE131F3938B0004E814D /* CoinExchangeDataEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoinExchangeDataEngine.h; sourceTree = "<group>"; };
 		2FC5EE141F3938B0004E814D /* CoinExchangeDataEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoinExchangeDataEngine.m; sourceTree = "<group>"; };
 		98763A4F1F359D1500D9AC59 /* CoinExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 		98763A461F359D1500D9AC59 = {
 			isa = PBXGroup;
 			children = (
+				2F77B5C81F3D9EB3003D0FFD /* README */,
 				98763A511F359D1500D9AC59 /* CoinExchange */,
 				98763A6B1F359D1500D9AC59 /* CoinExchangeTests */,
 				98763A501F359D1500D9AC59 /* Products */,
@@ -179,7 +182,6 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = FG8NNNY6FP;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 98763A4E1F359D1500D9AC59;
 					};
 				};
 			};
@@ -207,6 +209,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F77B5C91F3D9EB3003D0FFD /* README in Resources */,
 				98763A621F359D1500D9AC59 /* LaunchScreen.storyboard in Resources */,
 				98763A5F1F359D1500D9AC59 /* Assets.xcassets in Resources */,
 				98763A5D1F359D1500D9AC59 /* Main.storyboard in Resources */,
@@ -399,7 +402,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitsonthego.1apps.CoinExchangeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoinExchange.app/CoinExchange";
 			};
 			name = Debug;
 		};
@@ -411,7 +413,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitsonthego.1apps.CoinExchangeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoinExchange.app/CoinExchange";
 			};
 			name = Release;
 		};
