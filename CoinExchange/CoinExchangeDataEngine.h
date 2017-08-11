@@ -22,6 +22,6 @@ extern NSString *const gCoinExchangeEngineHasNewData;
                 product:(NSString *)product
                currency:(NSString *)currency
                  amount:(NSNumber *)amount
-             completion:(void (^)(NSString *message, NSNumber *amount, NSNumber *price))completion;
+             completion:(void (^)(NSString *message, NSNumber *amount, NSString *price))completion;
 
 @end

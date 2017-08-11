@@ -172,9 +172,9 @@
                                                      product:_productString
                                                     currency:_currencyString
                                                       amount:_amount
-                                                  completion:^(NSString *message, NSNumber *amount, NSNumber *price){
+                                                  completion:^(NSString *message, NSNumber *amount, NSString *price){
                                                     _messagesLabel.text = message;
-                                                    _priceResultLabel.text = [NSString stringWithFormat:@"%@", price ?: @"-"];
+                                                    _priceResultLabel.text = [NSString stringWithFormat:@"%@ %@", price ?: @"-", _currencyString];
                                                     _amountResultLabel.text = [NSString stringWithFormat:@"%@", amount ?: @"-"];                                                  }];
   }
 }

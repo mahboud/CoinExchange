@@ -182,7 +182,7 @@ static NSString *const btcCurrency = @"BTC";
                 product:(NSString *)product
                currency:(NSString *)currency
                  amount:(NSNumber *)amount
-             completion:(void (^)(NSString *message, NSNumber *amount, NSNumber *price))completion {
+             completion:(void (^)(NSString *message, NSNumber *amount, NSString *price))completion {
   if (completion == nil) {
     NSAssert(completion == nil, @"completion must not be nil");
     return;
@@ -212,7 +212,7 @@ static NSString *const btcCurrency = @"BTC";
     completion(((NSDictionary<NSString *, NSString *>*)orderBook)[@"message"], nil, nil);
     return;
   }
-  
+
   NSArray *subBook;
   if (([action isEqualToString: buyAction] && !reverseOrder) ||
       ([action isEqualToString: sellAction] && reverseOrder)) {
@@ -231,20 +231,20 @@ static NSString *const btcCurrency = @"BTC";
     }
     return;
   }
-  NSArray <NSNumber *>*results = [self getPriceWithOrderBook:subBook
-                                                      amount:amount.doubleValue
-                                                  multiplier:multiplier
-                                                      reverse:reverseOrder];
+  NSArray *results = [self getPriceWithOrderBook:subBook
+                                          amount:amount.doubleValue
+                                      multiplier:multiplier
+                                         reverse:reverseOrder];
   if (results.count == 3) {
-    if (!results[2].boolValue) {
+    if (!((NSNumber *)results[2]).boolValue) {
       completion(@"Unable to fulfill entire amount.",
                  results[1],
                  results[0]);
     }
     else {
       completion(@"Completed succesfully.",
-                  results[1],
-                  results[0]);
+                 results[1],
+                 results[0]);
     }
   }
   else {
@@ -252,10 +252,10 @@ static NSString *const btcCurrency = @"BTC";
   }
 }
 
-- (NSArray <NSNumber *>*)getPriceWithOrderBook:(NSArray *)bookArray
-                                        amount:(double)amount
-                                    multiplier:(int)multiplier
-                                       reverse:(BOOL)reverse {
+- (NSArray *)getPriceWithOrderBook:(NSArray *)bookArray
+                            amount:(double)amount
+                        multiplier:(int)multiplier
+                           reverse:(BOOL)reverse {
   double amountLeftToSatisfy = amount;
   double runningTotalPrice = 0;
   double runningTotalAmounts = 0;
@@ -295,8 +295,8 @@ static NSString *const btcCurrency = @"BTC";
 // For testing.
 
 - (void)clearState {
-  _orderBooks = nil;
-  _productIDs = nil;
+  [_orderBooks removeAllObjects];
+  [_productIDs removeAllObjects];
   _products = nil;
   _currencies = nil;
 
