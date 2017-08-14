@@ -117,8 +117,6 @@ static NSString *const btcCurrency = @"BTC";
     _outstandingRequests++;
     [_networkEngine getBookForProduct:productID
                    withSuccessHandler:^(NSDictionary *result) {
-                     // switch to internal queue
-                     // clear all data here
                      [self processBook:result forProduct:productID];
                      _outstandingRequests--;
                    } errorHandler:^(NSError *error, NSString *errorString) {
