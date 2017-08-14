@@ -225,7 +225,7 @@
                                                     currency:@"BIRDCOIN"
                                                       amount:@(0.5)
                                                   completion:^(NSString *message, NSNumber *amount, NSString *price){
-                                                    XCTAssertTrue([price isEqualToString:@"40.0"], @"Price should have been 40");
+                                                    XCTAssertTrue([price isEqualToString:@"40.00"], @"Price should have been 40");
                                                     XCTAssertEqual(amount.doubleValue, 0.5, @"Amount should have been 0.5");
                                                   }];
     [[CoinExchangeDataEngine sharedInstance] priceWithAction:@"Buy"
@@ -233,7 +233,7 @@
                                                     currency:@"BIRDCOIN"
                                                       amount:@(1.0)
                                                   completion:^(NSString *message, NSNumber *amount, NSString *price){
-                                                    XCTAssertTrue([price isEqualToString:@"50.0"], @"Price should have been 50");
+                                                    XCTAssertTrue([price isEqualToString:@"50.00"], @"Price should have been 50");
                                                     XCTAssertEqual(amount.doubleValue, 1.0, @"Amount should have been 1.0");
                                                   }];
     [[CoinExchangeDataEngine sharedInstance] priceWithAction:@"Buy"
@@ -241,7 +241,7 @@
                                                     currency:@"BIRDCOIN"
                                                       amount:@(3.0)
                                                   completion:^(NSString *message, NSNumber *amount, NSString *price){
-                                                    XCTAssertTrue([price isEqualToString:@"55.0"], @"Price should have been 55");
+                                                    XCTAssertTrue([price isEqualToString:@"55.00"], @"Price should have been 55");
                                                     XCTAssertEqual(amount.doubleValue, 2.0, @"Amount should have been 2.0");
                                                   }];
     [[CoinExchangeDataEngine sharedInstance] priceWithAction:@"Sell"

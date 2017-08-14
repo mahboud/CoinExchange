@@ -2,6 +2,10 @@ CoinExchange - CoinBase Applicant Programming Exercise
 
 Notes:
 
+0.
+
+This project should build and run on an iOS Simulator without any changes.  To run on a device, you need to make changes to the Development Team and/or profiles.  I’ll leave figuring out the magic incantation to the tester.
+
 1.
 
 I believe that there was a pair of contradictory statements in the email describing this exercise:
@@ -20,3 +24,6 @@ The latter meant that I would have to use a dummy orderbook table, which, I deci
 
 I have the app access the orderbooks once every 15 seconds.  During testing, I noticed that GDAX would sometimes return a "Rate limit exceeded".  I presume that this is not an issue with my code, and could be due to the 15 second queries.
 
+3.  
+
+There’s much I’d like to add, such as an indicator when an update occurs, or pausing/resuming auto-updates...
